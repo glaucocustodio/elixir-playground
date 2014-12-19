@@ -1,1 +1,1 @@
-
+Some Elixir code following along the reading of "Programming Elixir" by Dave Thomas.
