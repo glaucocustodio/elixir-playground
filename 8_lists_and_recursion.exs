@@ -37,6 +37,11 @@ defmodule MyList do
   def caesar_b([head | tail], n) do
     [head - n | caesar_b(tail, n)]
   end
+
+  def span(from, to) when from > to, do: []
+  def span(from, to) when from <= to do
+    [from|span(from+1, to)]
+  end
 end
 
 # Sum all values from list
@@ -62,3 +67,7 @@ IO.puts MyList.caesar('abcdefghijklmnopqrstuvwxyz', 13)
 
 # Encryption code to the sentence: `SHAME ON YOU`
 IO.puts MyList.caesar_b('XMFRJ%TS%^TZ', 5)
+
+IO.inspect MyList.span(1, 10)
+# `inspect` forces displaying a list of integers instead a charlist
+IO.puts inspect(MyList.span(52, 100), char_lists: :as_lists)
