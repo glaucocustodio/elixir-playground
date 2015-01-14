@@ -48,6 +48,7 @@ IO.inspect MyEnum.each(["hello", "world"], fn(x) -> IO.puts x end)
 # Filters the collection, returns only those elements for which fun returns true
 IO.inspect MyEnum.filter([1,2,3,4,5,6,12], fn(x) -> rem(x, 3) == 0 end)
 
+# Splits the list into two collections, leaving count elements in the first one
 IO.inspect MyEnum.split([1,2,3,4], 1)
 IO.inspect MyEnum.split([1,2,3,4], 2)
 IO.inspect MyEnum.split([1,2,3,4], 3)
