@@ -35,6 +35,17 @@ defmodule MyEnum do
     t = put_elem(t, 1, elem(t, 1) ++ [head])
     split(tail, count, t)
   end
+
+  # Takes the first count items from the collection
+  def take(_, _, f \\ [])
+  def take([], count, f), do: f
+  def take([head | tail], count, f) do
+    if length(f) < count do
+      f = f ++ [head]
+    end
+    take(tail, count, f)
+  end
+
 end
 
 # Should return true
@@ -53,3 +64,7 @@ IO.inspect MyEnum.split([1,2,3,4], 1)
 IO.inspect MyEnum.split([1,2,3,4], 2)
 IO.inspect MyEnum.split([1,2,3,4], 3)
 IO.inspect MyEnum.split([1,2,3,4], 4)
+
+IO.inspect MyEnum.take([1,2,3,4], 3)
+IO.inspect MyEnum.take([1,2,3,4], 5)
+IO.inspect MyEnum.take([1,2,3,4,5,6], 2)
