@@ -42,6 +42,17 @@ defmodule MyList do
   def span(from, to) when from <= to do
     [from|span(from+1, to)]
   end
+
+  # Returns true if given number is prime
+  def is_prime(n), do: is_prime(n, n, 0)
+  def is_prime(_, 0, true_occ) when true_occ == 2, do: true
+  def is_prime(_, 0, true_occ) when true_occ != 2, do: false
+  def is_prime(n, d, true_occ) do
+    if rem(n, d) == 0 do
+      true_occ = true_occ + 1
+    end
+    is_prime(n, d-1, true_occ)
+  end
 end
 
 # Sum all values from list
@@ -71,3 +82,13 @@ IO.puts MyList.caesar_b('XMFRJ%TS%^TZ', 5)
 IO.inspect MyList.span(1, 10)
 # `inspect` forces displaying a list of integers instead a charlist
 IO.puts inspect(MyList.span(52, 100), char_lists: :as_lists)
+
+IO.puts "2 is prime?"
+IO.puts MyList.is_prime(2)
+IO.puts "3 is prime?"
+IO.puts MyList.is_prime(3)
+IO.puts "7 is prime?"
+IO.puts MyList.is_prime(7)
+
+# Returns all prime numbers from 2 to n
+IO.inspect for c <- MyList.span(2, 100), MyList.is_prime(c) == true, do: c
