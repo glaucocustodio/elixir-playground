@@ -10,6 +10,7 @@ end
 pid = spawn(MyGreeter, :greet, [])
 pid2 = spawn(MyGreeter, :greet, [])
 
+# `self` represents the current process id
 send pid, {self, "fred"}
 send pid2, {self, "betty"}
 
